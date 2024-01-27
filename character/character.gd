@@ -1,6 +1,7 @@
 extends RigidBody3D
 
 var _input := Vector3.ZERO
+# builds up velocity
 var _incremental_speed : float = 1.0
 
 var mouse_sensitivity := 0.001
