@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://1hu8dlv2x6xy"]
+
+[ext_resource type="PackedScene" uid="uid://cf0ulxw6j47y3" path="res://world/plains/environment/trees/low_poly_tree/low_poly_tree.glb" id="1_j2fyf"]
+[ext_resource type="Script" path="res://world/plains/environment/trees/low_poly_tree/tree.gd" id="1_rmn2j"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ffmdx"]
+points = PackedVector3Array(-4.18344, 1.48046, -13.9186, 8.01136, -9.54929, -10.1424, -1.27878, -1.13294, 0.887775, -8.24837, 0.0289266, -11.3066, -3.02158, 5.83666, -9.56218, 4.81543, -7.51842, -17.6948, 2.06589, 2.8996, -12.5026, 1.6211, -0.260744, 0.887775, 7.13757, -10.4231, -10.1424, -3.89218, 5.83666, -12.7581, 3.65357, -8.38902, -17.4037, 1.91077, 3.51134, -8.1161, -1.27878, 1.19079, 0.887775, 6.26697, -5.19469, -12.7581, -3.60251, 5.54539, -8.4035, -8.24837, 0.899529, -11.0137, -7.95711, 0.318597, -12.1779, 0.683493, 1.18948, 0.171334, 1.04017, -1.42261, 0.887775, 5.68604, -3.74315, -10.4353, 3.65357, -7.51842, -17.6948, -0.989112, -1.42261, 0.887775, 3.57779, -1.50125, -4.707, -4.47311, 5.83666, -12.1779, 7.7185, -10.4231, -11.0137, -3.02158, 2.35106, -14.2096, -1.57004, -0.552006, 0.887775, 8.01136, -10.1302, -10.1424, 8.01136, -9.54929, -10.7263, 2.20204, 3.22326, -8.6909, 4.52417, -7.22715, -17.6948, -3.02158, 5.83666, -10.4353)
+
+[node name="Tree" type="Node3D"]
+
+[node name="RigidBody3D" parent="." groups=["Tree"] instance=ExtResource("1_j2fyf")]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_rmn2j")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_ffmdx")
+
+[editable path="RigidBody3D"]

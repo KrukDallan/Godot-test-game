@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=3 uid="uid://bax46c16y6cr1"]
+
+[ext_resource type="PackedScene" uid="uid://1hu8dlv2x6xy" path="res://world/plains/environment/trees/low_poly_tree/tree.tscn" id="2_k2yma"]
+[ext_resource type="PackedScene" uid="uid://cogpeuuanbvw4" path="res://character/character.tscn" id="2_tec2t"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n7njo"]
+sky_top_color = Color(0.27451, 0.678431, 0.827451, 1)
+sky_horizon_color = Color(0.601961, 0.701961, 0.709804, 1)
+sky_energy_multiplier = 1.7
+ground_bottom_color = Color(0.133333, 0.129412, 0.0117647, 1)
+ground_horizon_color = Color(0.601961, 0.701961, 0.709804, 1)
+
+[sub_resource type="Sky" id="Sky_t451a"]
+sky_material = SubResource("ProceduralSkyMaterial_n7njo")
+
+[sub_resource type="Environment" id="Environment_gtvqx"]
+background_mode = 2
+sky = SubResource("Sky_t451a")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ht6ga"]
+albedo_color = Color(0.623529, 1, 0.592157, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_06t32"]
+size = Vector2(5, 5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_m6if1"]
+data = PackedVector3Array(2.5, 0, 2.5, -2.5, 0, 2.5, 2.5, 0, -2.5, -2.5, 0, 2.5, -2.5, 0, -2.5, 2.5, 0, -2.5)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_gtvqx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 2.08165e-12, 2.08165e-12, 2.08165e-12)
+material_override = SubResource("StandardMaterial3D_ht6ga")
+mesh = SubResource("PlaneMesh_06t32")
+skeleton = NodePath("")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_m6if1")
+
+[node name="Player" parent="." instance=ExtResource("2_tec2t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2, 2.08165e-12)
+
+[node name="Tree" parent="." instance=ExtResource("2_k2yma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -10)
+
+[node name="Tree2" parent="." instance=ExtResource("2_k2yma")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0, -10)
