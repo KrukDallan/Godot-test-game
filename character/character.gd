@@ -11,6 +11,8 @@ var pitch_input := 0.0
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 
+var ball = preload("res://objects/ball.tscn")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,11 +37,21 @@ func _process(delta: float) -> void:
 	
 	
 	if Input.is_action_just_pressed("ui_cancel"):
-		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp($TwistPivot/PitchPivot.rotation.x, -0.5, 0.5)
+	
+	$RayCast3D.rotate_y(twist_input)
+	$RayCast3D.rotate_z(-pitch_input)
+	#$RayCast3D.rotation.z = clamp($RayCast3D.rotation.z, -0.5, 0.5)
+
+	
+	#print($RayCast3D.rotation, twist_pivot.rotation)
 	
 	twist_input = 0.0
 	pitch_input = 0.0
@@ -52,6 +64,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = -event.relative.x * mouse_sensitivity
 			pitch_input = - event.relative.y * mouse_sensitivity
+	elif Input.is_key_pressed(KEY_F):
+		var instanced = ball.instantiate()
+		instanced.position = position - Vector3(0,0,5)
+		instanced.set_direction(twist_pivot.basis*Vector3(0,0,1))
+		get_tree().get_root().add_child(instanced)
+
 			
 
 

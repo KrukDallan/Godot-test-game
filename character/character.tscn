@@ -17,6 +17,7 @@ linear_damp = 2.5
 script = ExtResource("1_fls2m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_8wmhf")
 skeleton = NodePath("")
 
@@ -32,3 +33,6 @@ transform = Transform3D(1, -4.09353e-16, 3.43488e-16, 3.43488e-16, 0.984808, 0.1
 [node name="Camera3D" type="Camera3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(1, -2.88221e-16, 3.43488e-16, 3.43488e-16, 0.984808, -0.173648, -2.88221e-16, 0.173648, 0.984808, 2.08165e-12, 2.08165e-12, 5)
 current = true
+
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(2.25947e-15, 4.37114e-08, 1, 1, -4.37114e-08, -3.48787e-16, 4.37114e-08, 1, -4.37114e-08, 2.08165e-12, 2.08165e-12, 2.08165e-12)
