@@ -7,10 +7,13 @@ var _incremental_speed : float = 1.0
 var mouse_sensitivity := 0.001
 var twist_input := 0.0
 var pitch_input := 0.0
+var mouse_coord := Vector3(0,0,0)
 
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
+@onready var raycast := $TwistPivot/PitchPivot/RayCast3D
 
+# load ball
 var ball = preload("res://objects/ball.tscn")
 
 
@@ -46,9 +49,10 @@ func _process(delta: float) -> void:
 	pitch_pivot.rotate_x(pitch_input)
 	pitch_pivot.rotation.x = clamp($TwistPivot/PitchPivot.rotation.x, -0.5, 0.5)
 	
-	$RayCast3D.rotate_y(twist_input)
-	$RayCast3D.rotate_z(-pitch_input)
+	#$RayCast3D.rotate_y(twist_input)
+	#$RayCast3D.rotate_z(-pitch_input)
 	#$RayCast3D.rotation.z = clamp($RayCast3D.rotation.z, -0.5, 0.5)
+	#$RayCast3D.look_at(mouse_coord)
 
 	
 	#print($RayCast3D.rotation, twist_pivot.rotation)
@@ -64,10 +68,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = -event.relative.x * mouse_sensitivity
 			pitch_input = - event.relative.y * mouse_sensitivity
+			mouse_coord = Vector3(0, event.relative.y,event.relative.x)
 	elif Input.is_key_pressed(KEY_F):
 		var instanced = ball.instantiate()
-		instanced.position = position - Vector3(0,0,5)
-		instanced.set_direction(twist_pivot.basis*Vector3(0,0,1))
+		instanced.position = raycast.global_position
+		instanced.transform.basis = raycast.global_transform.basis
+		#instanced.set_direction(twist_pivot.basis*Vector3(0,0,1))
 		get_tree().get_root().add_child(instanced)
 
 			
