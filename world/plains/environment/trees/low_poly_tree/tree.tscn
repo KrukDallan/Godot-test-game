@@ -11,6 +11,7 @@ points = PackedVector3Array(-4.18344, 1.48046, -13.9186, 8.01136, -9.54929, -10.
 [node name="RigidBody3D" parent="." groups=["Tree"] instance=ExtResource("1_j2fyf")]
 collision_layer = 2
 collision_mask = 7
+linear_damp = 2.0
 script = ExtResource("1_rmn2j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D"]
