@@ -17,6 +17,7 @@ linear_damp = 2.5
 script = ExtResource("1_fls2m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_8wmhf")
 skeleton = NodePath("")
 

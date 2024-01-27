@@ -11,8 +11,6 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass#move_and_collide(transform.basis*Vector3(0,0,-speed)* delta) 
+	pass
 
-func set_direction(dir: Vector3) -> void:
-	direction = dir
 	

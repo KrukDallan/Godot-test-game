@@ -15,6 +15,7 @@ var mouse_coord := Vector3(0,0,0)
 
 # load ball
 var ball = preload("res://objects/ball.tscn")
+var shooted : bool = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,6 +25,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	shooted = false
 	var input := Vector3.ZERO
 	input.x = Input.get_axis("ui_left", "ui_right")
 	input.z = Input.get_axis("ui_up", "ui_down")
@@ -47,29 +49,21 @@ func _process(delta: float) -> void:
 	
 	twist_pivot.rotate_y(twist_input)
 	pitch_pivot.rotate_x(pitch_input)
-	pitch_pivot.rotation.x = clamp($TwistPivot/PitchPivot.rotation.x, -0.5, 0.5)
-	
-	#$RayCast3D.rotate_y(twist_input)
-	#$RayCast3D.rotate_z(-pitch_input)
-	#$RayCast3D.rotation.z = clamp($RayCast3D.rotation.z, -0.5, 0.5)
-	#$RayCast3D.look_at(mouse_coord)
-
-	
-	#print($RayCast3D.rotation, twist_pivot.rotation)
+	pitch_pivot.rotation.x = clamp($TwistPivot/PitchPivot.rotation.x, -0.4, 0.6)
 	
 	twist_input = 0.0
 	pitch_input = 0.0
 	
 	
 	
-
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			twist_input = -event.relative.x * mouse_sensitivity
 			pitch_input = - event.relative.y * mouse_sensitivity
 			mouse_coord = Vector3(0, event.relative.y,event.relative.x)
-	elif Input.is_key_pressed(KEY_F):
+	elif Input.is_action_pressed("shoot") and shooted == false:
+		shooted = true
 		var instanced = ball.instantiate()
 		instanced.position = raycast.global_position
 		instanced.transform.basis = raycast.global_transform.basis
