@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://bax46c16y6cr1"]
+[gd_scene load_steps=13 format=3 uid="uid://bax46c16y6cr1"]
 
 [ext_resource type="PackedScene" uid="uid://1hu8dlv2x6xy" path="res://world/plains/environment/trees/low_poly_tree/tree.tscn" id="2_k2yma"]
-[ext_resource type="PackedScene" uid="uid://cogpeuuanbvw4" path="res://character/character.tscn" id="2_tec2t"]
 [ext_resource type="PackedScene" uid="uid://kpetghtsf3ub" path="res://objects/wall.tscn" id="3_63pom"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n7njo"]
@@ -61,9 +60,6 @@ collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConvexPolygonShape3D_46jun")
-
-[node name="Player" parent="." instance=ExtResource("2_tec2t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.39532, 2, 44.0435)
 
 [node name="Cuboid" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 55, -208)

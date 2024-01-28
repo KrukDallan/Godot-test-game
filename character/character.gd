@@ -10,10 +10,10 @@ var mouse_sensitivity := 0.001
 var twist_input := 0.0
 var pitch_input := 0.0
 
-@onready var twist_pivot := $TwistPivot
-@onready var pitch_pivot := $TwistPivot/PitchPivot
-@onready var raycast := $TwistPivot/PitchPivot/RayCast3D
-@onready var groundcast := $GroundCast
+var twist_pivot
+var pitch_pivot 
+var raycast 
+var groundcast 
 
 @export var jump_impulse = 50
 # The downward acceleration when in the air, in meters per second squared.
@@ -27,6 +27,10 @@ var shooted : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	twist_pivot = $TwistPivot
+	pitch_pivot = $TwistPivot/PitchPivot
+	raycast = $TwistPivot/PitchPivot/RayCast3D 
+	groundcast = $GroundCast
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
