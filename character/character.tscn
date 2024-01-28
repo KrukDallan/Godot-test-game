@@ -10,13 +10,11 @@ points = PackedVector3Array(-0.125207, -0.532801, -0.480507, 0.0227831, 0.47607,
 [node name="Player" type="RigidBody3D" groups=["Player"]]
 collision_layer = 4
 collision_mask = 3
-mass = 0.5
-contact_monitor = true
 lock_rotation = true
-linear_damp = 2.5
 script = ExtResource("1_fls2m")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_8wmhf")
 skeleton = NodePath("")
 
@@ -34,4 +32,11 @@ transform = Transform3D(1, -3.18388e-16, 3.4746e-16, 3.4746e-16, 0.996195, -0.08
 current = true
 
 [node name="RayCast3D" type="RayCast3D" parent="TwistPivot/PitchPivot"]
-transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, 2.71644e-08, -3.48787e-16, -5.25882e-08, 1, 2.08199e-12, -0.86706, -0.833339)
+transform = Transform3D(1, -3.48787e-16, 3.48787e-16, 3.48787e-16, 1, 2.71644e-08, -3.48787e-16, -5.25882e-08, 1, 2.08165e-12, -0.867, -1.5)
+debug_shape_thickness = 4
+
+[node name="GroundCast" type="RayCast3D" parent="."]
+target_position = Vector3(2.08165e-12, -1.1, 2.08165e-12)
+collision_mask = 3
+collide_with_areas = true
+debug_shape_thickness = 5

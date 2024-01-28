@@ -11,13 +11,13 @@ material = SubResource("StandardMaterial3D_h7qbf")
 radius = 1.0
 height = 2.0
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_umqk6"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_28ki1"]
 points = PackedVector3Array(0.980344, 0.183469, 0.0315765, -0.977477, -0.183355, -0.0904639, -0.942976, -0.274012, -0.181475, 0.152638, -0.666639, 0.728356, -0.211037, 0.78831, 0.576929, 0.184627, -0.0915623, -0.976969, -0.180659, 0.817713, -0.543999, 0.243737, -0.909689, -0.332273, -0.121109, 0.152902, 0.979443, -0.542369, -0.724769, 0.423657, 0.604588, 0.724305, -0.330643, 0.634171, 0.391896, 0.664077, -0.879055, 0.30349, 0.365178, -0.542663, -0.422869, -0.723919, 0.852268, -0.51673, 0.0618464, -0.724288, 0.332336, -0.603236, 0.760092, -0.121365, -0.636416, 0.638071, -0.242667, 0.728959, -0.394561, 0.913095, -0.090039, 0.365549, 0.911196, 0.18319, -0.394563, -0.913101, -0.0900396, -0.604357, -0.242246, 0.757853, 0.213378, 0.424522, -0.878365, 0.274246, -0.910695, 0.304605, 0.152873, -0.667673, -0.727284, -0.332904, 0.24293, -0.909566, -0.81657, 0.545227, -0.18048, -0.66277, 0.513033, 0.544283, 0.604588, -0.724305, -0.330643, 0.243867, 0.637198, 0.72921, 0.72941, 0.637067, 0.243636, 0.154338, -0.0917767, 0.981459)
 
 [node name="Ball" type="RigidBody3D" groups=["Ball"]]
 collision_layer = 2
 collision_mask = 3
-mass = 1.5
+mass = 5.0
 linear_damp = 1.0
 script = ExtResource("1_jpw0b")
 
@@ -25,7 +25,7 @@ script = ExtResource("1_jpw0b")
 mesh = SubResource("SphereMesh_fixiw")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_umqk6")
+shape = SubResource("ConvexPolygonShape3D_28ki1")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 10.0
