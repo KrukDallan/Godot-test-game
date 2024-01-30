@@ -3,15 +3,18 @@
 [ext_resource type="Script" path="res://entities/enemies/base_enemy/base_enemy.gd" id="1_yv0g8"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_gur22"]
+size = Vector3(12, 12, 12)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_qvhfy"]
-points = PackedVector3Array(-0.5, -0.5, -0.5, 0.0146517, 0.470697, 0.470697, 0.0735213, 0.352957, 0.47061, -0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.0146517, 0.470697, -0.470697, 0.5, -0.5, 0.5, -0.0146517, 0.470697, 0.470697, 0.0146517, 0.470697, -0.470697)
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_bqrbb"]
+points = PackedVector3Array(0.46573, -4.9665, -3.5, 0.146545, 4.70691, 3.30228, 0.146545, 4.70691, -3.31816, -4.98809, -4.9881, 3.5, 4.98809, -4.98907, 3.5, -4.96552, -4.96553, -3.5, 4.96552, -4.9665, -3.5, -0.146545, 4.70691, -3.31816, -0.146545, 4.70691, 3.30228, 4.70611, -4.41221, -3.31756, -4.70524, -4.41048, -3.31695, 4.70611, -4.41221, 3.30169, -4.70524, -4.41048, 3.30108)
 
 [node name="BaseEnemy" type="RigidBody3D"]
+collision_layer = 2
+collision_mask = 7
 script = ExtResource("1_yv0g8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("PrismMesh_gur22")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("ConvexPolygonShape3D_qvhfy")
+shape = SubResource("ConvexPolygonShape3D_bqrbb")

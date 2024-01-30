@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c17bifosi71b7"]
+
+[ext_resource type="Texture2D" uid="uid://ksrjpwnwhacd" path="res://objects/resources/greenbar-2.png" id="1_e2j5g"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3feah"]
+transparency = 1
+albedo_color = Color(0.141176, 1, 0.14902, 1)
+billboard_mode = 1
+
+[node name="healthbar" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+material_override = SubResource("StandardMaterial3D_3feah")
+texture = ExtResource("1_e2j5g")
+region_enabled = true
