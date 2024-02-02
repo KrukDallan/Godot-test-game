@@ -25,5 +25,16 @@ func _physics_process(delta):
 		apply_impulse(-move_to * delta * 800)
 		moving_threshold = 0.0
 	moving_threshold += delta
+	
+	var colliders = get_colliding_bodies()
+	for collider in colliders:
+		if collider.is_in_group("Ball"):
+			$SubViewport/ProgressBar.value = $SubViewport/ProgressBar.value - 5
+			if $SubViewport/ProgressBar.value <= 0:
+				die()
+			
+			
+func die():
+	queue_free()
 
 
