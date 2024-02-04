@@ -86,7 +86,8 @@ func _physics_process(delta: float) -> void:
 		
 	for i in detector.get_overlapping_bodies():
 		if i.name.contains("Tree"):
-			i.get_pulled()
+			if Input.is_key_pressed(KEY_E):
+				i.get_pulled()
 
 
 
