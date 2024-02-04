@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://1hu8dlv2x6xy"]
+[gd_scene load_steps=7 format=3 uid="uid://1hu8dlv2x6xy"]
 
 [ext_resource type="PackedScene" uid="uid://ugay0kewm0vt" path="res://world/plains/environment/trees/low_poly_tree/low_poly_tree.gltf" id="1_40bn0"]
 [ext_resource type="Script" path="res://world/plains/environment/trees/low_poly_tree/tree.gd" id="1_rmn2j"]
@@ -9,10 +9,18 @@ points = PackedVector3Array(9.25974, -9.98378, -10.647, 9.04397, -10.4176, -10.6
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ikj4m"]
 points = PackedVector3Array(13.2504, -7.47575, -11.8099, 7.03179, -3.92029, -24.6873, -12.5033, 0.517114, -11.8099, -7.95189, 5.27651, -21.7013, 9.6973, -11.9153, -8.70232, 6.24951, -13.1388, -23.0364, -8.40945, -0.936013, -22.5586, -0.46433, 6.05852, -21.081, -1.40437, 4.95878, -8.25539, 3.7159, 4.55938, -12.0838, 11.0301, -5.25385, -20.6894, -11.5352, 6.7425, -16.2903, -3.82323, 1.98211, -25.0593, 3.4787, -9.25241, -26.0212, 8.36454, -13.2467, -10.923, -5.84225, 3.18211, -8.25539, 13.6314, -11.1618, -11.1441, 9.68771, -9.38905, -24.3496, 12.808, -8.80718, -8.70232, 0.813184, -11.47, -21.5797, -12.0609, -0.371218, -16.6948, -12.3621, 5.45278, -12.4758, -13.5683, 2.88024, -16.296, -4.70844, 6.67674, -8.70333, -0.959187, 7.62377, -10.4761, -1.31819, 6.53451, -21.2925, 4.36627, -12.8057, -17.1383, 11.8961, -12.8571, -12.0099, -8.57918, -1.79981, -22.0002, -11.6157, 3.18211, -19.359, -9.42253, 7.17722, -14.1636, 10.0538, -11.4594, -20.0903)
 
+[sub_resource type="PointMesh" id="PointMesh_5aqr2"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qr3h8"]
+albedo_color = Color(0.941176, 0.301961, 0, 1)
+emission = Color(0.960784, 0.72549, 0.741176, 1)
+
 [node name="low_poly_tree" instance=ExtResource("1_40bn0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0536418, 0)
 collision_layer = 2
 collision_mask = 7
+max_contacts_reported = 2
+contact_monitor = true
 script = ExtResource("1_rmn2j")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
@@ -22,3 +30,7 @@ shape = SubResource("ConvexPolygonShape3D_hrk0k")
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." index="3"]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_ikj4m")
+
+[node name="BarkColorMesh" type="MeshInstance3D" parent="." index="4"]
+mesh = SubResource("PointMesh_5aqr2")
+surface_material_override/0 = SubResource("StandardMaterial3D_qr3h8")
