@@ -57,10 +57,10 @@ material_override = SubResource("StandardMaterial3D_ht6ga")
 mesh = SubResource("PlaneMesh_415ym")
 skeleton = NodePath("")
 
-[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D" groups=["Ground"]]
+[node name="Ground" type="StaticBody3D" parent="MeshInstance3D" groups=["Ground"]]
 collision_mask = 7
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/Ground"]
 shape = SubResource("ConvexPolygonShape3D_46jun")
 
 [node name="Cuboid" type="RigidBody3D" parent="."]
@@ -103,7 +103,7 @@ transform = Transform3D(0.999992, 0, -0.00397934, 0, 1, 0, 0.00397934, 0, 0.9999
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.6746, -3.12531, -27.9232)
 
 [node name="Tree14" parent="Forest" instance=ExtResource("2_k2yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.6746, -3.12531, 18.5588)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -75.6746, -0.998738, 18.5588)
 
 [node name="Tree13" parent="Forest" instance=ExtResource("2_k2yma")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 131.156, -3.12531, 18.5588)
@@ -127,16 +127,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 67.2691, -3.12531, 70.9436)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35.3027, -3.12531, 70.9436)
 
 [node name="Tree6" parent="Forest" instance=ExtResource("2_k2yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5562, -3.12531, 70.9436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.5562, -1.34892, 70.9436)
 
 [node name="Tree5" parent="Forest" instance=ExtResource("2_k2yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.4094, -3.12531, 70.9436)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.4094, -0.744657, 70.9436)
 
 [node name="Tree16" parent="Forest" instance=ExtResource("2_k2yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.4094, -3.71572, 167.785)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60.4094, -2.21176, 167.785)
 
 [node name="Tree17" parent="Forest" instance=ExtResource("2_k2yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.55, -3.12531, 167.785)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.55, -0.753194, 167.785)
 
 [node name="Tree18" parent="Forest" instance=ExtResource("2_k2yma")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -143.55, -3.12531, 86.2001)
@@ -163,7 +163,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.702, -3.12531, 197.978)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8882, -3.12531, 95.8078)
 
 [node name="Tree26" parent="Forest" instance=ExtResource("2_k2yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8882, -3.12531, 20.562)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.8882, -1.56368, 20.562)
 
 [node name="Tree27" parent="Forest" instance=ExtResource("2_k2yma")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -160.463, -3.12531, 20.562)
@@ -190,13 +190,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.731, -3.12531, 145.991)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -217.731, -3.12531, 197.739)
 
 [node name="Tree35" parent="Forest" instance=ExtResource("2_k2yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -178.687, -3.12531, 197.739)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -178.687, -1.63962, 197.739)
 
 [node name="Tree2" parent="Forest" instance=ExtResource("2_k2yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06095, 0, -32.0147)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.06095, 2.7777, -32.0147)
 
 [node name="Tree" parent="Forest" instance=ExtResource("2_k2yma")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.59643, -10)
 
 [node name="Wallace" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.12986, -252.628)

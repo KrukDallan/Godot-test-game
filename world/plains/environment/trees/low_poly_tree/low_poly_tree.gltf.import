@@ -3,18 +3,18 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cf0ulxw6j47y3"
-path="res://.godot/imported/low_poly_tree.glb-bb7dcec4d070cc8f6bea0d2523265fed.scn"
+uid="uid://ugay0kewm0vt"
+path="res://.godot/imported/low_poly_tree.gltf-0975e5bc21ae5a60e02e262220724e4e.scn"
 
 [deps]
 
-source_file="res://world/plains/environment/trees/low_poly_tree/low_poly_tree.glb"
-dest_files=["res://.godot/imported/low_poly_tree.glb-bb7dcec4d070cc8f6bea0d2523265fed.scn"]
+source_file="res://world/plains/environment/trees/low_poly_tree/low_poly_tree.gltf"
+dest_files=["res://.godot/imported/low_poly_tree.gltf-0975e5bc21ae5a60e02e262220724e4e.scn"]
 
 [params]
 
 nodes/root_type="RigidBody3D"
-nodes/root_name="Tree"
+nodes/root_name="Scene Root"
 nodes/apply_root_scale=true
 nodes/root_scale=1.0
 meshes/ensure_tangents=true
@@ -23,7 +23,7 @@ meshes/create_shadow_meshes=true
 meshes/light_baking=1
 meshes/lightmap_texel_size=0.2
 skins/use_named_skins=true
-animation/import=false
+animation/import=true
 animation/fps=30
 animation/trimming=false
 animation/remove_immutable_tracks=true

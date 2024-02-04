@@ -15,6 +15,8 @@ var pitch_pivot
 var raycast 
 var groundcast 
 
+@onready var detector = $TwistPivot/PitchPivot/Detector
+
 @export var jump_impulse = 50
 # The downward acceleration when in the air, in meters per second squared.
 @export var fall_acceleration = 9.81
@@ -53,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(_input)
 	if collision != null:
 		if collision.get_collider().is_in_group("Tree"):
-			collision.get_collider().get_pushed(_input)
+			pass#collision.get_collider().get_pushed(_input)
 		elif collision.get_collider().is_in_group("Ball"):
 			collision.get_collider().get_pushed(_input*0.5)
 		_incremental_speed = 1.0
@@ -81,6 +83,10 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_key_pressed(KEY_SPACE):
 		apply_central_impulse(Vector3(0,3,0))
+		
+	for i in detector.get_overlapping_bodies():
+		if i.name.contains("Tree"):
+			i.get_pulled()
 
 
 

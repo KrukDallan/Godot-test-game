@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dhm0mlq6ddv6x"]
+
+[sub_resource type="Gradient" id="Gradient_wsaog"]
+offsets = PackedFloat32Array(0, 0.514768, 1)
+colors = PackedColorArray(0.866667, 0.643137, 0.870588, 1, 0.870588, 0.776471, 0.764706, 1, 0.972549, 0.843137, 0.309804, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2ejie"]
+gradient = SubResource("Gradient_wsaog")
+
+[node name="Aura" type="Sprite2D"]
+position = Vector2(955, 538)
+scale = Vector2(29.6562, 16.625)
+texture = SubResource("GradientTexture2D_2ejie")
