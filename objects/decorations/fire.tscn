@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=3 uid="uid://c5bw7edtlcht5"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lvy05"]
+vertex_color_use_as_albedo = true
+roughness = 0.0
+emission_enabled = true
+emission = Color(0.937255, 0, 0, 1)
+emission_energy_multiplier = 0.75
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xx35w"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.0
+radial_segments = 16
+
+[sub_resource type="Curve" id="Curve_konvn"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.014082, -301.117), 0.0, 0.0, 0, 0, Vector2(0.182086, 327.798), 0.0, 0.0, 0, 0, Vector2(0.97041, -350.668), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_03on2"]
+_data = [Vector2(0.02959, 0.0394304), 0.0, 0.0, 0, 0, Vector2(0.502585, 0.658817), 0.0, 0.0, 0, 0, Vector2(0.941979, 0.0817816), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_tajg3"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.628834, 0.809816)
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0.0588235, 1, 1, 1, 0.054902, 1)
+
+[node name="fire" type="CPUParticles3D"]
+transform = Transform3D(0.699984, 0.0046914, 0, -0.0046914, 0.699984, 0, 0, 0, 0.7, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_lvy05")
+amount = 100
+lifetime = 2.0
+randomness = 0.5
+lifetime_randomness = 0.5
+draw_order = 2
+mesh = SubResource("CylinderMesh_xx35w")
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(2.08165e-12, 1, 2.08165e-12)
+spread = 1.0
+gravity = Vector3(2.08165e-12, 2, 2.08165e-12)
+initial_velocity_min = 0.1
+initial_velocity_max = 1.0
+angular_velocity_min = 0.5
+angular_velocity_max = 10.0
+angular_velocity_curve = SubResource("Curve_konvn")
+linear_accel_min = 0.1
+linear_accel_max = 1.0
+radial_accel_min = 1.0
+radial_accel_max = 1.0
+damping_max = 1.0
+angle_max = 45.0
+scale_amount_curve = SubResource("Curve_03on2")
+color = Color(1, 0.113725, 0, 1)
+color_ramp = SubResource("Gradient_tajg3")
+hue_variation_max = 1.0
