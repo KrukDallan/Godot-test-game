@@ -47,6 +47,32 @@ func generate():
 	
 	for p in room_positions:
 		rpv2.append(Vector2(p.x, p.z))
+		delaunay_graph.add_point(delaunay_graph.get_available_point_id(),Vector2(p.x, p.z))
+		mst_graph.add_point(mst_graph.get_available_point_id(),Vector2(p.x, p.z))
+		
+	var delaunay : Array = Array(Geometry2D.triangulate_delaunay(rpv2))
+	
+	for i in delaunay.size()/3:
+		var p1 : int = delaunay.pop_front()
+		var p2 : int = delaunay.pop_front()
+		var p3 : int = delaunay.pop_front()
+		
+		delaunay_graph.connect_points(p1,p2)
+		delaunay_graph.connect_points(p2,p3)
+		delaunay_graph.connect_points(p1,p3)
+		
+	var visited_points : PackedInt32Array = []
+	visited_points.append(randi() % room_positions.size())
+	
+	while visited_points.size() != mst_graph.get_point_count():
+		var possible_connections : Array[PackedInt32Array] = []
+		for vp in visited_points:
+			for connection in delaunay_graph.get_point_connections(vp):
+				if !visited_points.has(connection):
+					var con : PackedInt32Array = [vp,connection]
+					possible_connections.append(con)
+					
+		var connection : PackedInt32Array = possible_connections.pick_random()
 	
 func make_room(rec:int):
 	if !(rec > 0):
