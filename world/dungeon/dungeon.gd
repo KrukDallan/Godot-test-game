@@ -6,19 +6,27 @@ extends Node3D
 
 @export var start : bool = false : set = set_start
 func set_start(val:bool)->void:
-	generate()
+	if Engine.is_editor_hint():
+		generate()
 	
+@export_range(0,1) var edge_survival_chance	: float = 0.25
 @export var border_size : int = 20 : set = set_border_size
 func set_border_size(val: int)->void:
 	border_size = val	
 	if Engine.is_editor_hint():
 		visualize_border()
 		
+# number of rooms		
 @export var room_number : int = 4
+# minimum distance between rooms
 @export var room_margin : int = 1
 @export var room_recursion : int = 15
 @export var min_room_size : int = 2
 @export var max_room_size : int = 4
+@export_multiline var custom_seed : String = "" : set = set_seed
+func set_seed(val:String)->void:
+	custom_seed = val
+	seed(val.hash())
 
 var room_tiles : Array[PackedVector3Array] = []
 var room_positions : PackedVector3Array = []
@@ -36,6 +44,7 @@ func visualize_border():
 func generate():
 	room_tiles.clear()
 	room_positions.clear()
+	if custom_seed : set_seed(custom_seed)
 	visualize_border()
 	for i in room_number:
 		make_room(room_recursion)
@@ -73,11 +82,73 @@ func generate():
 					possible_connections.append(con)
 					
 		var connection : PackedInt32Array = possible_connections.pick_random()
+		for pc in possible_connections:
+			if rpv2[pc[0]].distance_squared_to(rpv2[pc[1]]) <\
+			 rpv2[connection[0]].distance_squared_to(rpv2[connection[1]]):
+				connection = pc
+		visited_points.append(connection[1])
+		mst_graph.connect_points(connection[0], connection[1])
+		delaunay_graph.disconnect_points(connection[0], connection[1])
+	
+	var hallway_graph : AStar2D = mst_graph
+	
+	for p in delaunay_graph.get_point_ids():
+		for c in delaunay_graph.get_point_connections(p):
+			if c>p:
+				var kill : float = randf()
+				if edge_survival_chance > kill:
+					hallway_graph.connect_points(p,c)
+	create_hallways(hallway_graph)
+	
+func create_hallways(hallway_graph : AStar2D):
+	var hallways : Array[PackedVector3Array] = []
+	for p in hallway_graph.get_point_ids():
+		for c in hallway_graph.get_point_connections(p):
+			if c>p:
+				var room_from : PackedVector3Array = room_tiles[p]
+				var room_to : PackedVector3Array = room_tiles[c]
+				var tile_from : Vector3 = room_from[0]
+				var tile_to : Vector3 = room_to[0]
+				for tile in room_from:
+					if tile.distance_squared_to(room_positions[c])<\
+					tile_from.distance_squared_to(room_positions[c]):
+						tile_from = tile
+				for tile in room_to:
+					if tile.distance_squared_to(room_positions[p])<\
+					tile_to.distance_squared_to(room_positions[p]):
+						tile_to = tile
+				var hallway : PackedVector3Array = [tile_from, tile_to]
+				hallways.append(hallway)
+				grid_map.set_cell_item(tile_from, 2)
+				grid_map.set_cell_item(tile_to, 2)
+	
+	var astar : AStarGrid2D = AStarGrid2D.new()
+	astar.size = Vector2i.ONE * border_size
+	astar.update()
+	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
+	astar.default_estimate_heuristic = AStarGrid2D.HEURISTIC_MANHATTAN
+	
+	for tile in grid_map.get_used_cells_by_item(0):
+		astar.set_point_solid(Vector2i(tile.x, tile.y))
+		
+	for h in hallways:
+		var pos_from : Vector2i = Vector2i(h[0].x, h[0].z)
+		var pos_to : Vector2i = Vector2i(h[1].x, h[1].z)
+		var hall : PackedVector2Array = astar.get_point_path(pos_from, pos_to)
+		
+		for t in hall:
+			var pos : Vector3i = Vector3i(t.x, 0 , t.y)
+			if grid_map.get_cell_item(pos) < 0:
+				grid_map.set_cell_item(pos,1)
+	
+	
+	
 	
 func make_room(rec:int):
 	if !(rec > 0):
 		return 
-		
+	
+	# dimensions of the room we are trying to place
 	var width : int = (randi() % (max_room_size - min_room_size)) + min_room_size
 	var height : int = (randi() % (max_room_size- min_room_size)) + min_room_size
 	
@@ -85,9 +156,9 @@ func make_room(rec:int):
 	start_pos.x = randi() % (border_size - width + 1)
 	start_pos.z = randi() % (border_size - height + 1)
 	
-	# also checks if rooms are occupied
+	# checks if rooms are occupied
+	# this double for loop exits with success if it can find an open position to place the tile
 	for r in range(-room_margin, height + room_margin):
-		# for each column in width
 		for c in range(-room_margin, width + room_margin):
 			var pos : Vector3i = start_pos + Vector3i(c, 0, r)
 			if grid_map.get_cell_item(pos) == 0:
@@ -103,6 +174,7 @@ func make_room(rec:int):
 			grid_map.set_cell_item(pos, 0)
 			room.append(pos)
 	room_tiles.append(room)
+
 	var avg_x : float = start_pos.x + (float(width)/2)
 	var avg_z : float = start_pos.z + (float(height)/2)
 	var pos : Vector3 = Vector3(avg_x,0, avg_z)
