@@ -42,7 +42,7 @@ size = Vector2(100, 100)
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0uocp"]
 points = PackedVector3Array(50.7837, 0.793495, 50.7837, -50.7837, -0.793495, -50.7837, -50.7837, 0.793495, -50.7837, 50.7837, -0.793495, -50.7837, -50.7837, -0.793495, 50.7837, -50.7837, 0.793495, 50.7837, 50.7837, 0.793495, -50.7837, 50.7837, -0.793495, 50.7837)
 
-[node name="Node3D" type="Node3D"]
+[node name="Forest" type="Node3D"]
 script = ExtResource("1_4fsfe")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

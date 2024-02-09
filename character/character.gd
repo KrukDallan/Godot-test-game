@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	var collision = move_and_collide(_input)
 	if collision != null:
 		if collision.get_collider().is_in_group("Tree"):
-			pass#collision.get_collider().get_pushed(_input)
+			collision.get_collider().get_pushed(_input)
 		elif collision.get_collider().is_in_group("Ball"):
 			collision.get_collider().get_pushed(_input*0.5)
 		_incremental_speed = 1.0

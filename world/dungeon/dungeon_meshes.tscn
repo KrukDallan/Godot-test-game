@@ -1,5 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://xivhtfeucguq"]
+[gd_scene load_steps=9 format=3 uid="uid://xivhtfeucguq"]
 
 [ext_resource type="PackedScene" uid="uid://c8og0mmp3l2ix" path="res://world/dungeon/dungeon_meshes.gltf" id="1_rs3in"]
+[ext_resource type="Script" path="res://world/dungeon/dungeon_meshes.gd" id="2_unqvf"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l7l00"]
+points = PackedVector3Array(-0.5, 0, -1.5, 0.5, 0, -1.5, -0.5, 0, -0.5, -0.5, 4, -1.5, 0.5, 0, -0.5, 0.5, 4, -1.5, -0.5, 4, -0.5, 0.5, 4, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ekyu7"]
+points = PackedVector3Array(0.5, 0, -0.5, 1.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 4, -0.5, 1.5, 0, 0.5, 1.5, 4, -0.5, 0.5, 4, 0.5, 1.5, 4, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hycoi"]
+points = PackedVector3Array(-0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, 1.5, -0.5, 4, 0.5, 0.5, 0, 1.5, 0.5, 4, 0.5, -0.5, 4, 1.5, 0.5, 4, 1.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oipw8"]
+points = PackedVector3Array(-1.5, 0, -0.5, -0.5, 0, -0.5, -1.5, 0, 0.5, -1.5, 4, -0.5, -0.5, 0, 0.5, -0.5, 4, -0.5, -1.5, 4, 0.5, -0.5, 4, 0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_53w2i"]
+points = PackedVector3Array(0.5, 5, 0.5, 0.5, 5, -0.5, -0.5, 5, 0.5, 0.5, 4, 0.5, 0.5, 4, -0.5, -0.5, 5, -0.5, -0.5, 4, 0.5, -0.5, 4, -0.5)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dcy5n"]
+points = PackedVector3Array(0.5, 1, 0.5, 0.5, 1, -0.5, -0.5, 1, 0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 1, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5)
 
 [node name="dungeon_meshes" instance=ExtResource("1_rs3in")]
+script = ExtResource("2_unqvf")
+
+[node name="CollisionShape_up" type="CollisionShape3D" parent="." index="1"]
+shape = SubResource("ConvexPolygonShape3D_l7l00")
+
+[node name="CollisionShape_right" type="CollisionShape3D" parent="." index="3"]
+shape = SubResource("ConvexPolygonShape3D_ekyu7")
+
+[node name="CollisionShape_down" type="CollisionShape3D" parent="." index="5"]
+shape = SubResource("ConvexPolygonShape3D_hycoi")
+
+[node name="CollisionShape_left" type="CollisionShape3D" parent="." index="7"]
+shape = SubResource("ConvexPolygonShape3D_oipw8")
+
+[node name="CollisionShape_ceiling" type="CollisionShape3D" parent="." index="9"]
+shape = SubResource("ConvexPolygonShape3D_53w2i")
+
+[node name="CollisionShape_floor" type="CollisionShape3D" parent="." index="11"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+shape = SubResource("ConvexPolygonShape3D_dcy5n")
