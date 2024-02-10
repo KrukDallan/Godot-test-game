@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://bax46c16y6cr1"]
+[gd_scene load_steps=16 format=3 uid="uid://bax46c16y6cr1"]
 
 [ext_resource type="Script" path="res://ForestScene.gd" id="1_4fsfe"]
 [ext_resource type="PackedScene" uid="uid://1hu8dlv2x6xy" path="res://world/plains/environment/trees/low_poly_tree/tree.tscn" id="2_k2yma"]
 [ext_resource type="PackedScene" uid="uid://kpetghtsf3ub" path="res://objects/wall.tscn" id="3_63pom"]
 [ext_resource type="PackedScene" uid="uid://dvxkc1187qkot" path="res://objects/decorations/brazier.tscn" id="4_3iy0u"]
+[ext_resource type="PackedScene" uid="uid://4hahrlj5stkt" path="res://world/dungeon/dungeon.tscn" id="5_4xux7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n7njo"]
 sky_top_color = Color(0.27451, 0.678431, 0.827451, 1)
@@ -242,3 +243,6 @@ transform = Transform3D(1, 0, -7.96627e-10, 0, 1, 0, -5.83875e-10, 0, 1, -46.726
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.9942, 106.279, -102.739)
 collision_layer = 2
 collision_mask = 7
+
+[node name="Dungeon" parent="." instance=ExtResource("5_4xux7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 175.977, 10.7386, 2.08165e-12)

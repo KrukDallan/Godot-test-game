@@ -5,6 +5,8 @@ var mob_scene = preload("res://entities/enemies/base_enemy/base_enemy.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var mob = mob_scene.instantiate()
+	$Dungeon.set_start(false)
+	$Dungeon/DungeonMesh.set_start(false)
 	#add_child(mob)
 
 

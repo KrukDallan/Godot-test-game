@@ -1,8 +1,18 @@
-@tool
+
 
 extends Node3D
-
 @onready var grid_map : GridMap = $GridMap
+@onready var dungeonmesh : Node3D = $DungeonMesh
+func _ready():
+	set_start(false)
+	dungeonmesh.set_start(false)
+	Character.position = get_starting_position()
+
+var starting_pos : Vector3 = Vector3.ZERO
+func get_starting_position():
+	return starting_pos
+
+
 
 @export var start : bool = false : set = set_start
 func set_start(val:bool)->void:
@@ -88,6 +98,9 @@ func generate():
 				connection = pc
 		visited_points.append(connection[1])
 		mst_graph.connect_points(connection[0], connection[1])
+		var tmp : Vector2 = mst_graph.get_point_position(randi() % mst_graph.get_point_count())
+		starting_pos = Vector3(tmp.x, 1, tmp.y)
+		print("starting pos setted")
 		delaunay_graph.disconnect_points(connection[0], connection[1])
 	
 	var hallway_graph : AStar2D = mst_graph

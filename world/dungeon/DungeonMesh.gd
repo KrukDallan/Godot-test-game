@@ -1,4 +1,4 @@
-@tool
+
 extends Node3D
 
 @export var grid_map_path : NodePath 
@@ -6,8 +6,8 @@ extends Node3D
 
 @export var start : bool = false : set = set_start
 func set_start(val:bool)->void:
-	if Engine.is_editor_hint():
-		create_dungeon()
+	#if Engine.is_editor_hint():
+	create_dungeon()
 		
 var dun_cell_scene : PackedScene = preload("res://world/dungeon/dungeon_meshes.tscn") #should use "dungeon cell",
 																					# so the blocks you want to use
