@@ -33,6 +33,7 @@ func get_pulled() -> void:
 	var move_to = position - Character.position
 	move_to = move_to.normalized()
 	apply_impulse(-move_to*5)
+	#scale = Vector3(2,2,2)
 	
 func glow():
 	$Bark.get_surface_override_material(0).emission_enabled = true

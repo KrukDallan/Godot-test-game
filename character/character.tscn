@@ -13,15 +13,20 @@ size = Vector3(0.1, 20, 0.001)
 [node name="Player" type="RigidBody3D" groups=["Player"]]
 collision_layer = 4
 collision_mask = 3
+gravity_scale = 2.66454e-15
 lock_rotation = true
+linear_velocity = Vector3(2.08165e-12, 1, 2.08165e-12)
 script = ExtResource("1_fls2m")
+jump_impulse = 10
+fall_acceleration = 2.08165e-12
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 mesh = SubResource("CapsuleMesh_8wmhf")
 skeleton = NodePath("")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 shape = SubResource("ConvexPolygonShape3D_deomx")
 
 [node name="TwistPivot" type="Node3D" parent="."]
@@ -40,6 +45,7 @@ debug_shape_thickness = 4
 
 [node name="Detector" type="Area3D" parent="TwistPivot/PitchPivot"]
 transform = Transform3D(7.5904e-09, 4.30473e-08, 1, 0.984808, -0.173648, -1.79153e-16, 0.173648, 0.984808, -4.37114e-08, 2.0848e-12, 1.35349, -7.56241)
+visible = false
 collision_layer = 4
 collision_mask = 7
 

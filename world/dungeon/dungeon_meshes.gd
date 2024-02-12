@@ -17,3 +17,4 @@ func hide_wall_left():
 func hide_wall_right():
 	$EasternWall.visible = false
 	$CollisionShape_right.free()
+	

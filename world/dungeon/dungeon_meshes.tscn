@@ -4,27 +4,32 @@
 [ext_resource type="Script" path="res://world/dungeon/dungeon_meshes.gd" id="2_unqvf"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_l7l00"]
+margin = 0.5
 points = PackedVector3Array(-0.5, 0, -1.5, 0.5, 0, -1.5, -0.5, 0, -0.5, -0.5, 4, -1.5, 0.5, 0, -0.5, 0.5, 4, -1.5, -0.5, 4, -0.5, 0.5, 4, -0.5)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_ekyu7"]
+margin = 0.5
 points = PackedVector3Array(0.5, 0, -0.5, 1.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 4, -0.5, 1.5, 0, 0.5, 1.5, 4, -0.5, 0.5, 4, 0.5, 1.5, 4, 0.5)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_hycoi"]
+margin = 0.5
 points = PackedVector3Array(-0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0, 1.5, -0.5, 4, 0.5, 0.5, 0, 1.5, 0.5, 4, 0.5, -0.5, 4, 1.5, 0.5, 4, 1.5)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_oipw8"]
+margin = 0.5
 points = PackedVector3Array(-1.5, 0, -0.5, -0.5, 0, -0.5, -1.5, 0, 0.5, -1.5, 4, -0.5, -0.5, 0, 0.5, -0.5, 4, -0.5, -1.5, 4, 0.5, -0.5, 4, 0.5)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_53w2i"]
+margin = 0.5
 points = PackedVector3Array(0.5, 5, 0.5, 0.5, 5, -0.5, -0.5, 5, 0.5, 0.5, 4, 0.5, 0.5, 4, -0.5, -0.5, 5, -0.5, -0.5, 4, 0.5, -0.5, 4, -0.5)
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dcy5n"]
+margin = 0.5
 points = PackedVector3Array(0.5, 1, 0.5, 0.5, 1, -0.5, -0.5, 1, 0.5, 0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 1, -0.5, -0.5, 0, 0.5, -0.5, 0, -0.5)
 
 [node name="dungeon_meshes" instance=ExtResource("1_rs3in")]
 collision_layer = 2
 collision_mask = 7
-gravity_scale = 2.66454e-15
 lock_rotation = true
 script = ExtResource("2_unqvf")
 

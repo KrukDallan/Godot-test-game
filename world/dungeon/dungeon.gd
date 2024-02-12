@@ -4,14 +4,20 @@ extends Node3D
 @onready var grid_map : GridMap = $GridMap
 @onready var dungeonmesh : Node3D = $DungeonMesh
 func _ready():
-	set_start(false)
-	dungeonmesh.set_start(false)
-	Character.position = get_starting_position()
+	#set_start(false)
+	generate()
+	dungeonmesh.create_dungeon()
+	#dungeonmesh.set_start(false)
+	Character.global_position = starting_pos
+	#Character.freeze = true
+	print(starting_pos)
+	#await get_tree().create_timer(5).timeout
+	#Character.freeze = false
+	print(Character.constant_force)
 
 var starting_pos : Vector3 = Vector3.ZERO
 func get_starting_position():
 	return starting_pos
-
 
 
 @export var start : bool = false : set = set_start
@@ -82,7 +88,7 @@ func generate():
 		
 	var visited_points : PackedInt32Array = []
 	visited_points.append(randi() % room_positions.size())
-	
+	var tmp : Vector2
 	while visited_points.size() != mst_graph.get_point_count():
 		var possible_connections : Array[PackedInt32Array] = []
 		for vp in visited_points:
@@ -98,10 +104,10 @@ func generate():
 				connection = pc
 		visited_points.append(connection[1])
 		mst_graph.connect_points(connection[0], connection[1])
-		var tmp : Vector2 = mst_graph.get_point_position(randi() % mst_graph.get_point_count())
-		starting_pos = Vector3(tmp.x, 1, tmp.y)
-		print("starting pos setted")
+		tmp = mst_graph.get_point_position(randi() % mst_graph.get_point_count())
 		delaunay_graph.disconnect_points(connection[0], connection[1])
+		
+	starting_pos = Vector3(tmp.x, 2, tmp.y)
 	
 	var hallway_graph : AStar2D = mst_graph
 	

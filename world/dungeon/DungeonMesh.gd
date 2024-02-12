@@ -50,6 +50,7 @@ func create_dungeon():
 		if cell_index <=2 && cell_index >=0:
 			var dun_cell : RigidBody3D = dun_cell_scene.instantiate()
 			dun_cell.position = Vector3(cell) + Vector3(0.5,0,0.5)
+			
 			add_child(dun_cell)
 			t +=1
 			#dun_cell.set_owner(owner)
